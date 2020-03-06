@@ -1,22 +1,28 @@
 <div class="container">
-    <div class="oferta">
+    <div class="oferta" *ngIf="oferta !== undefined">
+
+        <!-- <div class="row">
+            <div class="col">
+                <a [routerLink]="['/oferta', 1 ]">Oferta 1</a>
+                <a [routerLink]="['/oferta', 3 ]">Oferta 3</a>
+                <a [routerLink]="['/oferta', 6 ]">Oferta 6</a>
+            </div>
+        </div> -->
 
       <div class="row">
         <div class="col">
-          <h4>Super Burger - Rodízio de Mini-hambúrger com opção de entrada.</h4>
+          <h4>{{ oferta.titulo }}</h4>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6">
           <div class="img_capa">
-            <img src="/assets/ofertas/1/img1.jpg" />
+            <img [src]="oferta.imagens[0].url" />
           </div>
 
           <div class="thumbnails">
-            <img src="/assets/ofertas/1/img2.jpg" />
-            <img src="/assets/ofertas/1/img3.jpg" />
-            <img src="/assets/ofertas/1/img4.jpg" />
+            <img *ngFor="let imagens of oferta.imagens" [src]="imagens.url" />
           </div>
         </div>
 
@@ -30,7 +36,7 @@
 
           <div class="row">
             <div class="col text-center">
-              <h1>R$ 29,90</h1>
+              <h1>{{ oferta.valor }}</h1>
             </div>
           </div>
 
@@ -42,6 +48,25 @@
 
         </div>
 
+      </div>
+
+      <div class="row" style="margin: 40px 0 100px 0">
+          <div class="col">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" routerLink="como-usar" role="tab">Como usar</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" routerLink="onde-fica">Onde fica</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <router-outlet></router-outlet>
+            </div>
+
+          </div>
       </div>
 
       <br><br><br><br>
